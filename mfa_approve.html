@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MFA Approval</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .approve {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+        }
+        .cancel {
+            background-color: #f44336;
+            border: none;
+            color: white;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>MFA Approval</h2>
+    <p>Please choose whether to approve or deny the login request:</p>
+
+    <button class="approve" onclick="approveMFA()">✅ Approve</button>
+    <button class="cancel" onclick="cancelMFA()">❌ Deny</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function approveMFA() {
+            const resultDiv = document.getElementById('result');
+            try {
+                const response = await fetch('http://localhost:3000/api/mfa-approve', {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                resultDiv.textContent = response.ok ? "✅ " + data.message : "❌ " + data.message;
+            } catch (err) {
+                resultDiv.textContent = "⚠️ Failed to connect to server.";
+            }
+        }
+
+        async function cancelMFA() {
+            const resultDiv = document.getElementById('result');
+            try {
+                const response = await fetch('http://localhost:3000/api/mfa-cancel', {
+                    method: 'POST'
+                });
+                const data = await response.json();
+                resultDiv.textContent = response.ok ? "❌ " + data.message : "❌ " + data.message;
+            } catch (err) {
+                resultDiv.textContent = "⚠️ Failed to connect to server.";
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "ssd-mfa",
+  "version": "1.0.0",
+  "main": "secureLoginFixedDES.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quangthongphung/SSD-MFA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quangthongphung/SSD-MFA/issues"
+  },
+  "homepage": "https://github.com/quangthongphung/SSD-MFA#readme",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}
